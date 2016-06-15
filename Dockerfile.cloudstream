@@ -81,6 +81,7 @@ ENV APORT 5901
 ENV WPORT 6080
 
 EXPOSE ${WPORT}
+EXPOSE ${APORT}
 
 #RUN git clone git://github.com/kanaka/noVNC
 ##
