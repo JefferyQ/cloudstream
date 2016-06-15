@@ -21,7 +21,7 @@ RUN apt-get update && apt-get -y upgrade
 ###
 # Install bare minimum set of tools.
 ###
-RUN apt-get install -y nano curl x11vnc xvfb xinit git python zip xdg-utils firefox python3-tk python3-pexpect fluxbox
+RUN apt-get install -y nano curl x11vnc xvfb xinit git python zip xdg-utils firefox python3-tk python3-pexpect fluxbox autocutsel
 
 ###
 # Set up a non-root user account.
@@ -55,6 +55,9 @@ RUN mkdir ~/.vnc
 ###
 RUN echo '/usr/bin/x11vnc -display :1 $SHARESTRING -autoport $APORT -repeat -forever &' > ~/.xinitrc.nopassword
 RUN echo '/usr/bin/x11vnc -usepw -display :1 $SHARESTRING -autoport $APORT -repeat -forever &' > ~/.xinitrc.password
+
+RUN echo "autocutsel -s PRIMARY -fork" >> ~/.xinitrc.nopassword
+RUN echo "autocutsel -s PRIMARY -fork" >> ~/.xinitrc.password
 
 RUN echo "/usr/bin/startfluxbox" >> ~/.xinitrc.nopassword
 RUN echo "/usr/bin/startfluxbox" >> ~/.xinitrc.password
